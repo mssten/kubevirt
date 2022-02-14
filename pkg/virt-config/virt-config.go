@@ -70,6 +70,7 @@ const (
 	DefaultVirtHandlerLogVerbosity                  = 2
 	DefaultVirtLauncherLogVerbosity                 = 2
 	DefaultVirtOperatorLogVerbosity                 = 2
+	DefaultAppArmorLauncherProfile                  = ""
 
 	// Default REST configuration settings
 	DefaultVirtHandlerQPS         float32 = 5
@@ -287,4 +288,8 @@ func (c *ClusterConfig) GetObsoleteCPUModels() map[string]bool {
 //GetClusterCPUArch return the CPU architecture in ClusterConfig
 func (c *ClusterConfig) GetClusterCPUArch() string {
 	return c.cpuArch
+}
+
+func (c *ClusterConfig) GetAppArmorLauncherProfile() string {
+	return c.GetConfig().AppArmorLauncherProfile
 }

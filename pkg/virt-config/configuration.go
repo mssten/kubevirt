@@ -207,6 +207,7 @@ func defaultClusterConfig(cpuArch string) *v1.KubeVirtConfiguration {
 		SupportedGuestAgentVersions: supportedQEMUGuestAgentVersions,
 		OVMFPath:                    DefaultOVMFPath,
 		MemBalloonStatsPeriod:       &defaultMemBalloonStatsPeriod,
+		AppArmorLauncherProfile:     DefaultAppArmorLauncherProfile,
 		APIConfiguration: &v1.ReloadableComponentConfiguration{
 			RestClient: &v1.RESTClientConfiguration{RateLimiter: &v1.RateLimiter{TokenBucketRateLimiter: &v1.TokenBucketRateLimiter{
 				QPS:   DefaultVirtAPIQPS,

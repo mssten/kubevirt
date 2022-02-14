@@ -379,6 +379,17 @@ var _ = Describe("test configuration", func() {
 		Entry("When unset, should return default values", nil, &cmdv1.SMBios{Family: "KubeVirt", Product: "None", Manufacturer: "KubeVirt"}),
 	)
 
+	DescribeTable(" when AppArmorLauncherProfile", func(value string, result string) {
+		clusterConfig, _, _, _ := testutils.NewFakeClusterConfigUsingKVConfig(&v1.KubeVirtConfiguration{
+			AppArmorLauncherProfile: value,
+		})
+		appArmorProfile := clusterConfig.GetAppArmorLauncherProfile()
+		Expect(appArmorProfile).To(Equal(result))
+	},
+		Entry("when set, GetAppArmorLauncherProfile should return the value", "defaultAAprofile", "defaultAAprofile"),
+		Entry("when unset, GetAppArmorLauncherProfile should return the default", virtconfig.DefaultAppArmorLauncherProfile, virtconfig.DefaultAppArmorLauncherProfile),
+	)
+
 	DescribeTable(" when SELinuxLauncherType", func(value string, result string) {
 		clusterConfig, _, _ := testutils.NewFakeClusterConfigUsingKVConfig(&v1.KubeVirtConfiguration{
 			SELinuxLauncherType: value,
